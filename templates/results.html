@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VECV- Bolt Coefficient of Friction Library - Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Results:</h2>
+        {% if results %}
+        <fieldset>
+            <table border="0" align="center">
+                <tr>
+                    <td align="right">
+                        <p><strong>Under Head Friction:</strong> {{ results[0]['under_head_friction'] }}</p>
+                        <p><strong>Aluminum:</strong> {{ results[0]['aluminum'] }}</p>
+                        <p><strong>Cast Iron:</strong> {{ results[0]['cast_iron'] }}</p>
+                    </td>
+                    <td align="center" style="padding: 0 20px;">
+                    <td>
+                        <img src="{{ url_for('static', filename='images/bolt3.jpg') }}" alt="Image" width="200" height="190">
+                    <td align="left">
+                        <p><strong>Sheet Metal:</strong> {{ results[0]['sheet_metal'] }}</p>
+                        <p><strong>Thread Friction:</strong> {{ results[0]['thread_friction'] }}</p>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        {% else %}
+        <p>No matching data found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

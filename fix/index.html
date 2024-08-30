@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Column Search</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Excel Column Search</h1>
+    
+    <div id="dropdowns">
+        <form id="searchForm">
+            <div id="dropdown-container">
+                {% for i in range(6) %}
+                    <label>Column {{ i + 1 }}:</label>
+                    <select name="dropdown{{ i }}">
+                        {% for option in options['dropdown' ~ i] %}
+                            <option value="{{ option }}">{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                {% endfor %}
+            </div>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    
+    <div id="results"></div>
+    
+    <script>
+        $(document).ready(function(){
+            $('#searchForm').submit(function(event){
+                event.preventDefault();
+                var formData = $(this).serialize();
+                
+                $.get('/search', formData, function(data) {
+                    if (data.results) {
+                        $('#results').empty().append('<pre>' + JSON.stringify(data.results, null, 4) + '</pre>');
+                    } else {
+                        $('#results').html('<p>No results found</p>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
