@@ -64,11 +64,6 @@ def search():
                         'Output4': round(float(row.iloc[output_columns[2]]), 2) if pd.notna(row.iloc[output_columns[2]]) else 'N/A',
                         'Output5': round(float(row.iloc[output_columns[3]]), 2) if pd.notna(row.iloc[output_columns[3]]) else 'N/A',
                         'Output6': round(float(row.iloc[output_columns[4]]), 2) if pd.notna(row.iloc[output_columns[4]]) else 'N/A',
-                     #    'Output2': row.iloc[output_columns[0]] if pd.notna(row.iloc[output_columns[0]]) else 'N/A',
-                     #   'Output3': row.iloc[output_columns[1]] if pd.notna(row.iloc[output_columns[1]]) else 'N/A',
-                     #   'Output4': row.iloc[output_columns[2]] if pd.notna(row.iloc[output_columns[2]]) else 'N/A',
-                     #   'Output5': row.iloc[output_columns[3]] if pd.notna(row.iloc[output_columns[3]]) else 'N/A',
-                     #   'Output6': row.iloc[output_columns[4]] if pd.notna(row.iloc[output_columns[4]]) else 'N/A',
                         'Output7': row.iloc[output_columns[5]] if pd.notna(row.iloc[output_columns[5]]) else 'N/A',
                         'Output8': row.iloc[output_columns[6]] if pd.notna(row.iloc[output_columns[6]]) else 'N/A',
                         'Output9': row.iloc[output_columns[7]] if pd.notna(row.iloc[output_columns[7]]) else 'N/A',
@@ -168,4 +163,5 @@ def index2():
     return render_template('index2.html')
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    port = int(os.getenv('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
