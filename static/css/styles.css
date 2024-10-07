@@ -57,3 +57,44 @@ body {
     gap: 10px;
     margin-bottom: 20px;
 }
+.results-container {
+  margin: 20px auto;
+  width: 100%; /* Set a maximum width */
+}
+
+.result-pair {
+  display: flex; /* Use flexbox for layout */
+  margin: 5px 0; /* Space between pairs */
+}
+
+.label-box,
+.output-box {
+  position: relative; /* Position for the outline effect */
+  border: 2px solid #000000; /* Green border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Space inside the box */
+  background-color: #f0f0f0; /* Light background color */
+  width: 145px; /* Set a fixed width for boxes */
+  margin-right: 10px; /* Space between label and output box */
+}
+
+.label-box::before,
+.output-box::before {
+  content: '';
+  position: absolute;
+  top: -3px; /* Adjust for outline thickness */
+  left: -3px; /* Adjust for outline thickness */
+  right: -3px; /* Adjust for outline thickness */
+  bottom: -3px; /* Adjust for outline thickness */
+  border: 2px solid black; /* Black outline */
+  border-radius: 5px; /* Match rounded corners */
+  z-index: -1; /* Send the outline behind the box */
+}
+
+.output-box {
+  flex-grow: 1; /* Allow output box to grow */
+}
+
+.label-box strong {
+  color: #333; /* Dark color for the label */
+}
