@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Part No.</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Search by Bolt Specification</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/VECV.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles1.css') }}">
+    <style>
+       
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('bolt-form').addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
+                event.preventDefault();
 
                 // Collect selected values from the dropdowns
                 var selectedValues = [];
-                for (var i = 0; i < 5; i++) {  // You only have 5 dropdowns now
+                for (var i = 0; i < 5; i++) {
                     selectedValues.push(document.getElementById('dropdown' + i).value);
                 }
-
-                console.log('Selected Values:', selectedValues);
 
                 // Prepare the query string
                 var queryString = selectedValues.map(function(value, index) {
@@ -27,10 +29,7 @@
                 fetch('/search?' + queryString)
                     .then(response => response.json())
                     .then(data => {
-                        console.log('Data Received:', data);
-
                         if (data.results === 'No matching rows found') {
-                            // Handle no results case
                             document.getElementById('aluminum').textContent = 'N/A';
                             document.getElementById('cast-iron').textContent = 'N/A';
                             document.getElementById('sheet-metal').textContent = 'N/A';
@@ -38,8 +37,7 @@
                             document.getElementById('aaa').textContent = 'N/A';
                             document.getElementById('bbb').textContent = 'N/A';
                         } else {
-                            // Display results
-                            var result = data.results[0];  // Display the first result for simplicity
+                            var result = data.results[0];
                             document.getElementById('aluminum').textContent = result.Output2 || 'N/A';
                             document.getElementById('cast-iron').textContent = result.Output3 || 'N/A';
                             document.getElementById('sheet-metal').textContent = result.Output4 || 'N/A';
@@ -54,146 +52,100 @@
     </script>
 </head>
 <body>
+    <!-- Header Section -->
+    <header class="header">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        <h2>COF by Bolt Specification</h2>
+        <nav class="nav-menu">
+            <a href="/">Home</a>
+            <!-- <a href="/index2">Bolt Part Number</a> -->
+            <a href="/design.html">About Us</a>
+        </nav>
+    </header>
+
+    <!-- Main Container for Input/Output -->
     <div class="container">
-        <img src="{{ url_for('static', filename='images/head.jpg') }}" alt="Head" width="1000" height="60">
-        <div class="dropdowns">
+        <!-- Input Section -->
+        <div class="form-section">
             <form id="bolt-form">
-                <fieldset style="width: 970px; height: 200px;">
-                    <table border="0" align="center">
-                        <tr>
-                            <td align="right">
-                                <img src="{{ url_for('static', filename='images/bolt1.jpg') }}" alt="Left Image" width="150" height="190">
-                            </td>
-                            <td align="center" style="padding: 0 20px;">
-                                <td>
-                                <label for="dropdown0">DIA:</label>
-                                <select id="dropdown0" name="dropdown0" style="width: 190px;">
-                                    <option value="">DIA</option>
-                                    {% for option in options.dropdown0 %}
-                                        <option value="{{ option }}">{{ option }}</option>
-                                    {% endfor %}
-                                </select><br><br>
-                                <label for="dropdown1">PITCH:</label>
-                                <select id="dropdown1" name="dropdown1" style="width: 190px;">
-                                    <option value="">PITCH</option>
-                                    {% for option in options.dropdown1 %}
-                                        <option value="{{ option }}">{{ option }}</option>
-                                    {% endfor %}
-                                </select><br>
-                            </td>
-                            <td>
-                                <label for="dropdown2">PLATING:</label>
-                                <select id="dropdown2" name="dropdown2" style="width: 190px;">
-                                    <option value="">PLATING</option>
-                                    {% for option in options.dropdown2 %}
-                                        <option value="{{ option }}">{{ option }}</option>
-                                    {% endfor %}
-                                </select><br>
-                                <br>
-                                <input type="submit" value="Search" class="styled-button" style="width: 200px; height: 30px; font-size: 16px;">
-                            </td>
-                            <td>
-                                <label for="dropdown3">GRADE:</label>
-                                <select id="dropdown3" name="dropdown3" style="width: 190px;">
-                                    <option value="">GRADE</option>
-                                    {% for option in options.dropdown3 %}
-                                        <option value="{{ option }}">{{ option }}</option>
-                                    {% endfor %}
-                                </select><br><br>
-                                <label for="dropdown4">HEAD TYPE:</label>
-                                <select id="dropdown4" name="dropdown4" style="width: 190px;">
-                                    <option value="">HEAD TYPE</option>
-                                    {% for option in options.dropdown4 %}
-                                        <option value="{{ option }}">{{ option }}</option>
-                                    {% endfor %}
-                                </select><br>
-                                
-                            </td>
-                            </td>
-                            <td align="left">
-                                <img src="{{ url_for('static', filename='images/bolt2.jpg') }}" alt="Right Image" width="150" height="190">
-                            </td>
-                        </tr>
-                    </table>
-                </fieldset>
+                <h3>Input Parameters</h3>
+                <label for="dropdown0">DIA:</label>
+                <select id="dropdown0" name="dropdown0">
+                    <option value="">Select DIA</option>
+                    {% for option in options.dropdown0 %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select><br><br>
+
+                <label for="dropdown1">PITCH:</label>
+                <select id="dropdown1" name="dropdown1">
+                    <option value="">Select PITCH</option>
+                    {% for option in options.dropdown1 %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select><br><br>
+
+                <label for="dropdown2">PLATING:</label>
+                <select id="dropdown2" name="dropdown2">
+                    <option value="">Select PLATING</option>
+                    {% for option in options.dropdown2 %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select><br><br>
+
+                <label for="dropdown3">GRADE:</label>
+                <select id="dropdown3" name="dropdown3">
+                    <option value="">Select GRADE</option>
+                    {% for option in options.dropdown3 %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select><br><br>
+
+                <label for="dropdown4">HEAD TYPE:</label>
+                <select id="dropdown4" name="dropdown4">
+                    <option value="">Select HEAD TYPE</option>
+                    {% for option in options.dropdown4 %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select><br><br>
+
+                <input type="submit" value="Search" class="styled-button">
             </form>
         </div>
-        <!--<div class="results">
-            <h3>Results:</h3>
-            <p>Aluminum: <span id="aluminum">N/A</span></p>
-            <p>Cast Iron: <span id="cast-iron">N/A</span></p>
-            <p>Sheet Metal: <span id="sheet-metal">N/A</span></p>
-            <p>Chassis: <span id="aaa">N/A</span></p>
-            <p>Thread Friction: <span id="thread-friction">N/A</span></p>
-            
-        </div> -->
-        <div id="results" class="results-container">
-            <h2>Results</h2>
-            <fieldset>
-                <table border="0" align="center">
-                    <tr>
-                        <td align="right">
-                            <h3>Under Head Friction</h3>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Chassis:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="aaa">N/A</span>
-                                </div>
-                            </div>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Aluminum:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="aluminum">N/A</span>
-                                </div>
-                            </div>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Cast Iron:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="cast-iron">N/A</span>
-                                </div>
-                            </div>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Sheet Metal:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="sheet-metal">N/A</span>
-                                </div>
-                            </div>
-                            
-                        </td>
-                        <td align="center" style="padding: 0 20px;">
-                            <img src="static/images/bolt3.jpg" alt="Left Image" width="200" height="190">
-                        </td>
-                        <td>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Thread Friction:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="thread-friction">N/A</span>
-                                </div>
-                            </div>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Part No:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="bbb">N/A</span>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
+
+        <!-- Output Section -->
+        <div class="results-section">
+            <h3>Bolt Under Head Frictions With</h3>
+            <div class="result-pair">
+                <div class="label-box">Chassis:</div>
+                <div class="output-box"><span id="aaa">N/A</span></div>
+            </div>
+
+            <div class="result-pair">
+                <div class="label-box">Aluminum:</div>
+                <div class="output-box"><span id="aluminum">N/A</span></div>
+            </div>
+
+            <div class="result-pair">
+                <div class="label-box">Cast Iron:</div>
+                <div class="output-box"><span id="cast-iron">N/A</span></div>
+            </div>
+
+            <div class="result-pair"> 
+                <div class="label-box">Sheet Metal:</div>
+                <div class="output-box"><span id="sheet-metal">N/A</span></div>
+            </div>
+            <h3>Bolt Thread Friction With</h3>
+            <div class="result-pair">
+                <div class="label-box">Thread Friction:</div>
+                <div class="output-box"><span id="thread-friction">N/A</span></div>
+            </div>
+            <h3>Part Number</h3>
+            <div class="result-pair">
+                <div class="label-box">Part No:</div>
+                <div class="output-box"><span id="bbb">N/A</span></div>
+            </div>
         </div>
-        
     </div>
 </body>
 </html>

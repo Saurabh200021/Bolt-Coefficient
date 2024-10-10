@@ -5,121 +5,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VECV - Bolt Coefficient of Friction Library</title>
-    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/VECV.png') }}" type="image/x-icon">
+
     <style>
-        /* Global Styles */
-        body,
-        html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f8ff;
-        }
+    /* Animation for background image change */
+   @keyframes slideImages {
+       0% {
+           background-image: url('static/images/bolt1.jpg');
+       }
 
-        .container {
-            text-align: center;
-        }
+       25% {
+           background-image: url('static/images/bolt2.jpg');
+       }
 
-        /* Styled Buttons */
-        .styled-button {
-            width: 300px;
-            height: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            background-color: #20b2aa;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s, transform 0.3s;
-        }
+       50% {
+           background-image: url('static/images/bolt3.jpg');
+       }
 
-        .styled-button:hover {
-            background-color: #008080;
-            transform: scale(1.05);
-        }
+       75% {
+           background-image: url('static/images/bolt4.jpg');
+       }
 
-        /* Header Image */
-        .header-image {
-            width: 1000px;
-            height: 60px;
-            margin-bottom: 20px;
-        }
+       100% {
+           background-image: url('static/images/bolt1.jpg');
+       }
+   }
 
-        /* Word Slider */
-        .slider {
-            margin-bottom: 20px;
-            font-size: 28px;
-            font-weight: bold;
-            color: #008080;
-        }
-
-
-        /* Bolt Images */
-        .bolt-image {
-            width: 150px;
-            height: 150px;
-            margin: 20px;
-            transition: transform 0.3s;
-        }
-
-        .bolt-image:hover {
-            transform: rotate(360deg);
-        }
-
-        /* Dropdown Container */
-        #dropdown-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-        }
     </style>
+    <h1>VECV- Bolt coefficient of Friction Library  </h1>
 </head>
 
 <body>
-    <div class="container">
-        <fieldset style="width: 900px; height: 450px;">
-            <img src="static/images/head.jpg" alt="Head" class="header-image">
 
-            <!-- Word Slider Section -->
-            <div class="slider">
-                <span class="word-slide" id="word-slide">Bolts</span>
-            </div>
-
-            <!-- Button Section -->
-            <div id="dropdown-container">
-                <button class="styled-button" onclick="window.location.href='index1'">Solution by some
-                    parameters</button>
-                <button class="styled-button" onclick="window.location.href='/index2'">Solution by Part No.</button>
-            </div>
-
-            <img src="static/images/bolt1.jpg" alt="Bolt" class="bolt-image">
-            <img src="static/images/bolt2.jpg" alt="Bolt" class="bolt-image">
-        </fieldset>
+    <!-- Header Section -->
+    <div class="header">
+        <img src="static/images/logo.png" alt="Logo">
+        <h1>VECV Bolt COF Library</h1>
+        <div class="nav-menu">
+            <a href="/design.html">About Us</a>
+             
+            <!-- <a href="#">Contact</a> -->
+        </div>
     </div>
 
-    <!-- JavaScript for Word Slider -->
-    <script>
-        // Array of words to slide through
-        const words = ["Bolts", "Nuts", "Washers", "Fasteners", "Screws"];
-        let currentWordIndex = 0;
+    <!-- Hero Section - Image Slider -->
+    <div class="hero">
+        <div class="hero-text">Coefficient of Friction by:</div>
+        <!-- Overlay Buttons -->
+        <div class="hero-buttons">
+            <a href="/index1">Bolt Specification </a>
+            <a href="/index2">Bolt Part Number</a>
+           
+        </div>
+    </div>
 
-        // Function to update the slider text
-        function updateSlider() {
-            const wordSlideElement = document.getElementById("word-slide");
-            currentWordIndex = (currentWordIndex + 1) % words.length;
-            wordSlideElement.textContent = words[currentWordIndex];
-        }
 
-        // Update slider every 2 seconds
-        setInterval(updateSlider, 2000);
-    </script>
 </body>
 
 </html>

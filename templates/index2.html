@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Part No. Search</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Search by Part Number</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles2.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/VECV.png') }}" type="image/x-icon">
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('bolt-form').addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent the default form submission
+                event.preventDefault();
 
-                // Collect the value from the input field
                 var partNoValue = document.getElementById('partNo').value.trim();
 
                 if (!partNoValue) {
@@ -18,19 +18,12 @@
                     return;
                 }
 
-                console.log('Input Value:', partNoValue);
-
-                // Prepare the query string
                 var queryString = 'partNo=' + encodeURIComponent(partNoValue);
 
-                // Make an AJAX request to the Flask backend
                 fetch('/search?' + queryString)
                     .then(response => response.json())
                     .then(data => {
-                        console.log('Data Received:', data);
-
                         if (data.results === 'No matching rows found') {
-                            // Handle no results case
                             document.getElementById('aluminum').textContent = 'N/A';
                             document.getElementById('cast-iron').textContent = 'N/A';
                             document.getElementById('sheet-metal').textContent = 'N/A';
@@ -44,8 +37,7 @@
 
                             alert('No Such Part number found');
                         } else {
-                            // Display results
-                            var result = data.results[0]; // Display the first result for simplicity
+                            var result = data.results[0]; 
                             document.getElementById('aluminum').textContent = result.Output2 || 'N/A';
                             document.getElementById('cast-iron').textContent = result.Output3 || 'N/A';
                             document.getElementById('sheet-metal').textContent = result.Output4 || 'N/A';
@@ -62,146 +54,92 @@
             });
         });
     </script>
+    <style>
+
+    </style>
 </head>
 <body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        <h2>COF by Part Number</h2>
+        <nav class="nav-menu">
+            <a href="/">Home</a>
+            <!-- <a href="/index1">Bolt Specification</a> -->
+            <a href="/design">About Us</a>
+        </nav>
+    </div>
+
+    <!-- Content with sections -->
     <div class="container">
-        <img src="{{ url_for('static', filename='images/head.jpg') }}" alt="Head" width="1000" height="60">
-        <div class="input-field">
+        <!-- First Section: Input -->
+        <div class="input-section">
             <form id="bolt-form">
-                <fieldset style="width: 970px; height: 200px;">
-                    <table border="0" align="center">
-                        <tr>
-                            <td align="right">
-                                <img src="{{ url_for('static', filename='images/bolt1.jpg') }}" alt="Left Image" width="150" height="190">
-                            </td>
-                            <td align="center" style="padding: 0 20px;">
-                                <label for="partNo">Part No:</label><br>
-                                <input type="text" id="partNo" name="partNo" style="width: 190px;" required><br><br>
-                                <input type="submit" value="Search" style="width: 100px; height: 40px; font-size: 16px;">
-                            </td>
-                            <td align="left">
-                                <img src="{{ url_for('static', filename='images/bolt2.jpg') }}" alt="Right Image" width="150" height="190">
-                            </td>
-                        </tr>
-                    </table>
-                </fieldset>
+                <p><strong>Enter the Part number to find corresponding information</strong></p>
+                <label for="partNo"></label>
+                <input type="text" id="partNo" name="partNo" required><br>
+                <input type="submit" value="Search" class="styled-button">
             </form>
         </div>
-        <!--
-        <div class="results">
-            <h3>Results:</h3>
-            <p>Aluminum: <span id="aluminum">N/A</span></p>
-            <p>Cast Iron: <span id="cast-iron">N/A</span></p>
-            <p>Sheet Metal: <span id="sheet-metal">N/A</span></p>
-            <p>Chassis: <span id="aa">N/A</span></p>
-            <p>Thread Friction: <span id="thread-friction">N/A</span></p>
-            <p>Head Type: <span id="bb">N/A</span></p>
-            <p>Pitch: <span id="cc">N/A</span></p>
-            <p>Plating: <span id="dd">N/A</span></p>
-            <p>Grade: <span id="ee">N/A</span></p>
-            <p>DIA: <span id="ff">N/A</span></p>
 
+        <!-- Second Section: Output -->
+        <div class="results-container">
+            <div class="results-section">
+                <fieldset>
+                    <legend><strong>Under Head Friction Outputs</strong></legend>
+                    <div class="result-pair">
+                        <div class="label-box">Chassis:</div>
+                        <div class="output-box"><span id="aa">N/A</span></div>
+                    </div>
+                    <div class="result-pair">
+                        <div class="label-box">Aluminum:</div>
+                        <div class="output-box"><span id="aluminum">N/A</span></div>
+                    </div>
+                    <div class="result-pair">
+                        <div class="label-box">Cast Iron:</div>
+                        <div class="output-box"><span id="cast-iron">N/A</span></div>
+                    </div>
+                    <div class="result-pair">
+                        <div class="label-box">Sheet Metal:</div>
+                        <div class="output-box"><span id="sheet-metal">N/A</span></div>
+                    </div>
+                    <legend><strong>Thread Friction Output</strong></legend>
+                    <div class="result-pair">
+                        <div class="label-box">Thread Friction:</div>
+                        <div class="output-box"><span id="thread-friction">N/A</span></div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <!-- Third Section: Additional Outputs -->
+            <div class="results-section">
+                <fieldset>
+                    <legend><strong>Part Number Specification</strong></legend>
+                    <div class="result-pair">
+                        <div class="label-box">Head Type:</div>
+                        <div class="output-box"><span id="bb">N/A</span></div>
+                    </div>
+                    <div class="result-pair">
+                        <div class="label-box">Pitch:</div>
+                        <div class="output-box"><span id="cc">N/A</span></div>
+                    </div>
+                    <div class="result-pair">
+                        <div class="label-box">Plating:</div>
+                        <div class="output-box"><span id="dd">N/A</span></div>
+                    </div>
+                    <div class="result-pair">
+                        <div class="label-box">Grade:</div>
+                        <div class="output-box"><span id="ee">N/A</span></div>
+                    </div>
+                    <div class="result-pair">
+                        <div class="label-box">DIA:</div>
+                        <div class="output-box"><span id="ff">N/A</span></div>
+                    </div>
+                </fieldset>
+            </div>
         </div>
-        -->
-        <div id="results" class="results-container">
-            <h2>Results</h2>
-            <fieldset style="width: 950px; height: 300px;">
-                <table border="0" align="center">
-                    <tr>
-                        <td align="right">
-                            <h3>Under Head Friction</h3>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Chassis:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="aa">N/A</span>
-                                </div>
-                            </div>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Aluminum:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="aluminum">N/A</span>
-                                </div>
-                            </div>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Cast Iron:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="cast-iron">N/A</span>
-                                </div>
-                            </div>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Sheet Metal:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="sheet-metal">N/A</span>
-                                </div>
-                            </div>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Thread Friction:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="thread-friction">N/A</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td align="center" style="padding: 0 20px;">
-                            <img src="static/images/bolt3.jpg" alt="Left Image" width="200" height="190">
-                        </td>
-                        <td align="left">
-                            <h3>Parameters</h3>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Head Type:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="bb">N/A</span>
-                                </div>
-                            </div>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Pitch:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="cc">N/A</span>
-                                </div>
-                            </div>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Plating:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="dd">N/A</span>
-                                </div>
-                            </div>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>Grade:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="ee">N/A</span>
-                                </div>
-                            </div>
-                            <div class="result-pair">
-                                <div class="label-box">
-                                    <strong>DIA:</strong>
-                                </div>
-                                <div class="output-box">
-                                    <span id="ff">N/A</span>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-        </div>
-        
     </div>
+
 </body>
 </html>

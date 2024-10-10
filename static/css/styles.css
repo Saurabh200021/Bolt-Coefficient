@@ -1,11 +1,11 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-  }
-  
-  .container {
+  } */
+
+/* .container {
     max-width: 1000px;
     margin: 50px auto;
     padding: 20px;
@@ -13,8 +13,8 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-  
-  h1, h2 {
+   */
+/* h1, h2 {
     text-align: center;
   }
   
@@ -25,76 +25,235 @@ body {
   
   label, input {
     margin-bottom: 10px;
-  }
-  
-  button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  #results {
-    margin-top: 20px;
-  }
-  footer {
-    display: block;
-    color: #ff4242;
-    text-align: center;
-  padding: 3px;
-  background-color: DarkSalmon;
-  }
-  .dropdowns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-.results-container {
-  margin: 20px auto;
-  width: 100%; /* Set a maximum width */
+  } */
+
+/* button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.result-pair {
-  display: flex; /* Use flexbox for layout */
-  margin: 5px 0; /* Space between pairs */
+button:hover {
+  background-color: #0056b3;
 }
+
+#results {
+  margin-top: 20px;
+}
+
+footer {
+  display: block;
+  color: #ff4242;
+  text-align: center;
+  padding: 3px;
+  background-color: DarkSalmon;
+} */
+
+.dropdowns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+ /* Container with a bit of transparency */
+ .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 20px auto;
+  background-color: rgba(255, 255, 255, 0.8); /* Slight transparency */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* .results-container {
+  margin: 20px auto;
+  width: 100%;
+  /* Set a maximum width */
+/* } */
+
+/* .result-pair {
+  display: flex;
+  /* Use flexbox for layout */
+  /* margin: 5px 0; */
+  /* Space between pairs */
+/* } */ 
 
 .label-box,
 .output-box {
-  position: relative; /* Position for the outline effect */
-  border: 2px solid #000000; /* Green border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 10px; /* Space inside the box */
-  background-color: #f0f0f0; /* Light background color */
-  width: 145px; /* Set a fixed width for boxes */
-  margin-right: 10px; /* Space between label and output box */
+  position: relative;
+  /* Position for the outline effect */
+  border: 2px solid #000000;
+  /* Green border */
+  border-radius: 5px;
+  /* Rounded corners */
+  padding: 10px;
+  /* Space inside the box */
+  background-color: #f0f0f0;
+  /* Light background color */
+  width: 145px;
+  /* Set a fixed width for boxes */
+  margin-right: 10px;
+  /* Space between label and output box */
 }
 
 .label-box::before,
 .output-box::before {
   content: '';
   position: absolute;
-  top: -3px; /* Adjust for outline thickness */
-  left: -3px; /* Adjust for outline thickness */
-  right: -3px; /* Adjust for outline thickness */
-  bottom: -3px; /* Adjust for outline thickness */
-  border: 2px solid black; /* Black outline */
-  border-radius: 5px; /* Match rounded corners */
-  z-index: -1; /* Send the outline behind the box */
+  top: -3px;
+  /* Adjust for outline thickness */
+  left: -3px;
+  /* Adjust for outline thickness */
+  right: -3px;
+  /* Adjust for outline thickness */
+  bottom: -3px;
+  /* Adjust for outline thickness */
+  border: 2px solid black;
+  /* Black outline */
+  border-radius: 5px;
+  /* Match rounded corners */
+  z-index: -1;
+  /* Send the outline behind the box */
 }
 
 .output-box {
-  flex-grow: 1; /* Allow output box to grow */
+  flex-grow: 1;
+  /* Allow output box to grow */
 }
 
 .label-box strong {
-  color: #333; /* Dark color for the label */
+  color: #333;
+  /* Dark color for the label */
+}
+
+/* Global Styles */
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  background-size: cover;
+  background-position: center;
+}
+
+.container {
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Header Section */
+.header {
+  background-color: #00539b;
+  padding: 10px 20px;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.header img {
+  width: 150px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+
+.nav-menu a:hover {
+  background-color: #003d6b;
+}
+
+/* Hero Section - Image Slider */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  animation: slideImages 16s infinite;
+  text-align: center;
+}
+
+.hero-text {
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  /* Space between text and buttons */
+}
+
+/* Overlay Buttons */
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.hero-buttons a {
+  padding: 15px 30px;
+  background-color: rgba(0, 83, 155, 0.8);
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.hero-buttons a:hover {
+  background-color: rgba(0, 61, 107, 0.8);
+  transform: scale(1.05);
+}
+
+
+/* Footer */
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-links {
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
 }

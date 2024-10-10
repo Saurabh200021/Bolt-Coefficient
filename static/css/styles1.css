@@ -1,0 +1,169 @@
+ /* Full-page background image */
+ body {
+    background-image: url('/static/images/bolt1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Container with a bit of transparency */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.397); /* Slight transparency */
+    padding: 20px;
+    border-radius: 10px;
+}
+.label-box,
+.output-box {
+position: relative;
+/* Position for the outline effect */
+border: 1px solid #000000;
+/* Green border */
+border-radius: 5px;
+/* Rounded corners */
+padding: 5px;
+/* Space inside the box */
+background-color: #f0f0f0;
+/* Light background color */
+width: 125px;
+/* Set a fixed width for boxes */
+margin-right: 10px;
+/* Space between label and output box */
+}
+
+.label-box::before,
+.output-box::before {
+content: '';
+position: absolute;
+top: -3px;
+/* Adjust for outline thickness */
+left: -3px;
+/* Adjust for outline thickness */
+right: -3px;
+/* Adjust for outline thickness */
+bottom: -3px;
+/* Adjust for outline thickness */
+border: 1px solid black;
+/* Black outline */
+border-radius: 5px;
+/* Match rounded corners */
+z-index: -1;
+/* Send the outline behind the box */
+}
+
+.output-box {
+flex-grow: 1;
+/* Allow output box to grow */
+}
+
+.label-box strong {
+color: #333;
+/* Dark color for the label */
+}
+/* Styling for header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #00539b;
+    color: white;
+}
+
+.header img {
+    width: 100px;
+}
+
+.nav-menu {
+display: flex;
+gap: 15px;
+}
+
+.nav-menu a {
+color: white;
+text-decoration: none;
+font-size: 16px;
+text-transform: uppercase;
+padding: 10px;
+transition: background-color 0.3s;
+}
+
+.nav-menu a:hover {
+background-color: #003d6b;
+}
+
+/* Form section */
+.form-section {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Light background */
+    border-radius: 10px;
+}
+
+/* Output section with light color */
+.results-section {
+
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f0f8ff; /* Light blue for output */
+    border-radius: 10px;
+}
+
+.results-section h3, .form-section h3 {
+    text-align: center;
+}
+
+.result-pair {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.output-box {
+    font-weight: bold;
+}
+
+/* Dropdown menu styling */
+select {
+    background-color: #f0f8ff; /* Light blue background */
+    color: #00539b;
+    padding: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+/* Circular submit button */
+.styled-button {
+display: inline-block;
+background-color: #00539b;
+color: white;
+padding: 0;
+border: none;
+border-radius: 50px; /* Adjusted to create rounded corners */
+cursor: pointer;
+font-size: 16px;
+width: 5cm;  /* Set the width to 3 cm */
+height: 1.2cm;  /* Set the height to 0.7 cm */
+text-align: center;
+line-height: 0.7cm; /* Center the text vertically */
+}
+
+.styled-button:hover {
+background-color: #003f7f; /* Darker shade on hover */
+}
+
+/* Ensuring full page height and layout for no scroll */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
